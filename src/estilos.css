@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+} 
+header {
+    background-color: rgb(24, 88, 88);
+text-align: center;
+padding: 25px;
+
+}
+
+.titulo {
+    color: white;
+}
+
+nav ul li{
+list-style: none;
+display: inline-block;
+color: white;
+padding: 0 15px;
+}
+
+#card {
+    background-color: #D0B8A8;
+}
