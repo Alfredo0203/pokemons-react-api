@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react'
 
 
-const Types = ({setPokemons, pokemons}  ) => {
+const Types = ({setPokemons, selecionado, setselected}  ) => {
 
   const [poke, setPoke] = useState([]);
-  const [selecionado, setselected] = useState('')
+
   const arr = [];
   const duplicados = []
 
   useEffect(() => {
-  fetch('https://pokeapi.co/api/v2/pokemon/?limit=30')
-      .then((response) => response.json())
-      .then((data) => 
-        data.results.map((item) => {
-          fetch(item.url)
-            .then((response) => response.json())
-            .then((allpokemon) => arr.push(allpokemon));
-            setPoke(arr);
-        }),
-      );
-  }, [selecionado]);
+ getPokemonsType()
+  },[]);
 
+  const getPokemonsType = () => {
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=30')
+    .then((response) => response.json())
+    .then((data) => 
+      data.results.map((item) => {
+        fetch(item.url)
+          .then((response) => response.json())
+          .then((allpokemon) => arr.push(allpokemon));
+          setPoke(arr);
+      }),
+    );
+  }
 
   useEffect(() => {
-    if(selecionado) {
+    if(selecionado=! '' && selecionado!= 'reset') {
       const tiposFiltrados = poke.filter(pokemon => pokemon.types['0'].type.name ==selecionado)
       setPokemons(tiposFiltrados)
+    }
+    if(selecionado == 'reset') {
+      setselected('')
+      setPokemons(arr)
     }
   },[selecionado])
 
@@ -35,6 +42,7 @@ const Types = ({setPokemons, pokemons}  ) => {
   return (
     <select value={selecionado} name="" id="" onChange  ={e => setselected(e.target.value)}>
         <option style={{textAlign:'center',}}value="" className='elegir'>--Buscar Por tipo---</option>
+        <option style={{textAlign:'center',}}value="reset" className='elegir'>--Reset Busqueda---</option>
        
     {poke.map((p) =>(
 
