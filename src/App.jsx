@@ -10,7 +10,7 @@ function App() {
 
     
     <div className="">
-     
+   
       <ListPokemons/>
     </div>
     

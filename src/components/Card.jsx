@@ -4,12 +4,14 @@ import axios from 'axios'
 const Card = ({pokemons}) => {
     const [pokeData, setPokeData] = useState('')
     const [pokeSprites, setPokeSprites] = useState('')
+    const [pokeType, setPokeType] = useState([]); 
 
     const getPokemosByUrl = (url) => {
         axios.get(url)
         .then((response) => {
             setPokeData(response.data)
             setPokeSprites(response.data.sprites)
+            setPokeType(response.data.types["0"].type)
         })
     }
 
@@ -31,6 +33,7 @@ const Card = ({pokemons}) => {
             <p><span>Height: </span>{pokeData.height}</p>
             <p><span>Weight:</span> {pokeData.weight}</p>
             <p><span>Especies:</span> {pokeData.name}</p>
+            <p><span>Tipo:</span> {pokeType.name}</p>
           </div>
       </div>
 
