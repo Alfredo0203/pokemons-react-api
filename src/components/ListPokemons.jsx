@@ -9,17 +9,16 @@ const ListPokemons = () => {
 
     const [pokemons, setPokemons] = useState([]);
     const [busqueda, setBusqueda] = useState('')
-    const [pokemonsTable, setPokemonsTable] = useState([]);
     const [selecionado, setselected] = useState('')
+    const [tipos, setTipos] = useState([]);
     
     
     
     const getPokemons = () => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/?limit=30')
+        axios.get('https://pokeapi.co/api/v2/pokemon/?limit=100')
         .then((response) => {
           
             setPokemons(response.data.results);
-            setPokemonsTable(response.data.results)
             
         })
         
@@ -30,17 +29,13 @@ const ListPokemons = () => {
     
     const buscar = (elemento) => {
       setBusqueda(elemento.target.value)
-      filtrarBusqueda(elemento.target.value)
     }
 
-    const filtrarBusqueda = (terminoBusqueda) => {
-      const datoEncontrado = pokemonsTable.filter((dato) => {
-        if(dato.name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
-          return dato
-        }
-      })
-      setPokemons(datoEncontrado)
-    }
+    let results =[]
+    !busqueda? results = pokemons :
+   results  = pokemons.filter((dato) => dato.name.toString().toLowerCase().includes(busqueda.toLowerCase())
+    )
+    
 
    
 
@@ -55,7 +50,9 @@ const ListPokemons = () => {
     },[selecionado])
     
 
-
+const filtrarTipo = (elTipo) => {
+console.log('El tipo:', elTipo);
+}
     
      
    
@@ -64,24 +61,27 @@ const ListPokemons = () => {
     
       <div className='buscar'>
       <input type='text' placeholder='Buscar' onChange={buscar} value={busqueda}/>
-      
-    {
-       <Types 
-       setPokemons={setPokemons}
-       pokemons={pokemons}
-       selecionado={selecionado}
-       setselected={setselected}
-    /> 
-        
+        <Types tipos={tipos} setTipos={setTipos}/> 
+
+        <select value={selecionado} name="" id="" onChange  ={e => setselected(e.target.value)}>
+          <option value="">Buscar por tipo</option>
+          {tipos.map((tipo) => (
+          <option value={tipo.name}>{tipo.name}</option>
+          
+        )
+          )}
+        </select>
        
-       }
+   
+
+
      
       </div>
 
       
       
       <h1>Lista pokemones</h1>
-      { pokemons.map((pokemon) => (
+      { results.map((pokemon) => (
         <Card pokemons={pokemon} selecionado={selecionado}/> 
        
       ))}
