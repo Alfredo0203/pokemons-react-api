@@ -4,7 +4,7 @@ import {useState, useEffect } from "react";
 const Types =({tipos, setTipos}) => {
 
  
- const fetchApi = async () => {
+ const fetchApi = async  () => {
 
 
     let res = await fetch("https://pokeapi.co/api/v2/type");

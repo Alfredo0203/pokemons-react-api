@@ -26,8 +26,8 @@ const Card = ({ pokemons, selecionado }) => {
     selecionado == ''? 
     (
       
-      <div className='col-md-4' >
-        <div className='card mt-4'>
+      <div className='poke-info col-md-3' >
+        <div className='poke-info2 card mt-3'>
           <div className='card-header'>
             <b>{pokeData.name}</b>
           </div>
@@ -47,14 +47,14 @@ const Card = ({ pokemons, selecionado }) => {
 
     : 
     (
-      selecionado == pokeType.name? 
+      pokeType.name.toLowerCase().includes(selecionado)? 
 
       (
 
         
-      <div className='col-md-4' >
-      <div className='card mt-4'>
-        <div className='card-header'>
+       <div className='poke-info col-md-3' >
+        <div className='poke-info2 card mt-3'>
+          <div className='card-header'>
           <b>{pokeData.name}</b>
         </div>
         <img src={pokeSprites.front_default} alt="" width={200} />

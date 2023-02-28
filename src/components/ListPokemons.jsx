@@ -35,9 +35,6 @@ const ListPokemons = () => {
     !busqueda? results = pokemons :
    results  = pokemons.filter((dato) => dato.name.toString().toLowerCase().includes(busqueda.toLowerCase())
     )
-    
-
-   
 
     useEffect((e) => {
       if(selecionado!= '' ) {
@@ -47,14 +44,7 @@ const ListPokemons = () => {
 
        getPokemons()
      
-    },[selecionado])
-    
-
-const filtrarTipo = (elTipo) => {
-console.log('El tipo:', elTipo);
-}
-    
-     
+    },[selecionado]) 
    
   return (
     <div className='row' id='card' style={{padding:"5rem"}}>
@@ -81,6 +71,8 @@ console.log('El tipo:', elTipo);
       
       
       <h1>Lista pokemones</h1>
+
+      {results.length == 0&& (<div class="alert alert-warning">No se encontraron pokemones</div>)}
       { results.map((pokemon) => (
         <Card pokemons={pokemon} selecionado={selecionado}/> 
        
