@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Card = ({ pokemons, selecionado }) => {
-  
+
   const [pokeData, setPokeData] = useState('')
   const [pokeSprites, setPokeSprites] = useState('')
   const [pokeType, setPokeType] = useState([]);
@@ -48,7 +48,7 @@ const Card = ({ pokemons, selecionado }) => {
 
     : 
     (
-      pokeType.name.toLowerCase().includes(selecionado)? 
+      pokeType.name.includes(selecionado)? 
 
       (
 

@@ -22,7 +22,7 @@ const ListPokemons = () => {
     <div className='row' id='card' style={{padding:"5rem"}}>
     
       <div className='buscar'>
-      <input type='text' placeholder='Buscar' onChange={buscar} value={busqueda}/>
+      <input type='text' placeholder='Buscar por nombre' onChange={buscar} value={busqueda}/>
         <Types tipos={tipos} setTipos={setTipos}/> 
 
         <select value={selecionado} name="" id="" onChange  ={e => setselected(e.target.value)}>
