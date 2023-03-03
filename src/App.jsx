@@ -1,20 +1,18 @@
-import { useState } from 'react'
 
 import './Estilos.css'
 
-import ListPokemons from './components/ListPokemons'
-
+import ListPokemons from "./components/ListPokemons";
+import PokeContext from "../src/components/providers/PokeContext";
 function App() {
-
   return (
-
-    
-    <div className="">
+    <PokeContext>
+      <div className="">
    
-      <ListPokemons/>
-    </div>
-    
-  )
+   <ListPokemons/>
+ </div>
+    </PokeContext>
+  );
 }
 
-export default App
+export default App;
+

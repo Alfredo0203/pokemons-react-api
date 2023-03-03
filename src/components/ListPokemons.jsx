@@ -1,31 +1,12 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, {useState, useEffect, useContext} from 'react'
 import Card from './Card';
 import Types from './Types';
+import { PokemonContext } from './providers/PokeContext';
 
 
 const ListPokemons = () => {
 
-
-    const [pokemons, setPokemons] = useState([]);
-    const [busqueda, setBusqueda] = useState('')
-    const [selecionado, setselected] = useState('')
-    const [tipos, setTipos] = useState([]);
-    
-    
-    
-    const getPokemons = () => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/?limit=100')
-        .then((response) => {
-          
-            setPokemons(response.data.results);
-            
-        })
-        
-    }
-
-   
-    
+    const { pokemons, setPokemons,selecionado, setselected, tipos, setTipos, busqueda, setBusqueda} = useContext(PokemonContext)
     
     const buscar = (elemento) => {
       setBusqueda(elemento.target.value)
@@ -36,15 +17,6 @@ const ListPokemons = () => {
    results  = pokemons.filter((dato) => dato.name.toString().toLowerCase().includes(busqueda.toLowerCase())
     )
 
-    useEffect((e) => {
-      if(selecionado!= '' ) {
-        setBusqueda('')
-        
-    }
-
-       getPokemons()
-     
-    },[selecionado]) 
    
   return (
     <div className='row' id='card' style={{padding:"5rem"}}>
@@ -72,7 +44,7 @@ const ListPokemons = () => {
       
       <h1>Lista pokemones</h1>
 
-      {results.length == 0&& (<div class="alert alert-warning">No se encontraron pokemones</div>)}
+      {results.length == 0&& (<div className="alert alert-warning">No se encontraron pokemones</div>)}
       { results.map((pokemon) => (
         <Card pokemons={pokemon} selecionado={selecionado}/> 
        

@@ -10,7 +10,6 @@ const Types =({tipos, setTipos}) => {
     let res = await fetch("https://pokeapi.co/api/v2/type");
     let datos = await res.json();
     const resultados = datos.results;
-    console.log(resultados)
     setTipos(resultados);
    
   }
