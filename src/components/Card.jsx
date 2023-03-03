@@ -48,7 +48,7 @@ const Card = ({ pokemons, selecionado }) => {
 
     : 
     (
-      pokeType.name.includes(selecionado)? 
+      pokeType.name == selecionado? 
 
       (
 
